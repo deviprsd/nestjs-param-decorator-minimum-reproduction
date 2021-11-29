@@ -5,7 +5,6 @@ import {
   ExecutionContext,
   Post,
 } from '@nestjs/common';
-import { AppService } from './app.service';
 import { Schema, z } from 'zod';
 
 const user = z.object({
@@ -26,8 +25,6 @@ const SchemaBody = createParamDecorator(
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
   @Post()
   getHello(@SchemaBody(user) firstName: z.infer<typeof user>): string {
     return `Hello ${firstName.hello}`;
